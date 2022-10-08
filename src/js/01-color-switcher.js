@@ -5,17 +5,20 @@ let intervalId = null;
 
 startBtn.addEventListener('click', onActiveChangeColor);
 stopBtn.addEventListener('click', onStopChangeColor);
+stopBtn.disabled = true;
 
 function onActiveChangeColor() {
   intervalId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
   }, 1000);
   startBtn.disabled = true;
+  stopBtn.disabled = false;
 }
 
 function onStopChangeColor() {
   clearInterval(intervalId);
   startBtn.disabled = false;
+  stopBtn.disabled = true;
 }
 
 function getRandomHexColor() {
