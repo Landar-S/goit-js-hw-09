@@ -40,12 +40,19 @@ function createPromise(position, delay) {
 function onSubmitForm(e) {
   e.preventDefault();
 
-  let position = 1;
-  let newDelay = Number(formEl.elements.delay.value);
+  const formData = {
+    newDelay: Number(formEl.elements.delay.value),
+    step: Number(formEl.elements.step.value),
+    amount: Number(formEl.elements.amount.value),
+  };
 
-  for (let i = 0; i < formEl.elements.amount.value; i += 1) {
-    createPromise(position, newDelay);
-    position += 1;
-    newDelay += Number(formEl.elements.step.value);
+  if (formData.newDelay < 0 || formData.step < 0 || formData.amount < 1) {
+    return;
+  }
+
+  for (let position = 1; position <= formData.amount; position += 1) {
+    createPromise(position, formData.newDelay);
+
+    formData.newDelay += formData.step;
   }
 }
