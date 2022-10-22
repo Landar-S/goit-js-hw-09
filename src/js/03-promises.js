@@ -47,6 +47,7 @@ function onSubmitForm(e) {
   };
 
   if (formData.newDelay < 0 || formData.step < 0 || formData.amount < 1) {
+    Notiflix.Report.warning('Warning', 'Enter the correct data', 'Ok');
     return;
   }
 
